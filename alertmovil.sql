@@ -15,6 +15,8 @@ CREATE TABLE empleado (
 
 create table hospital(
 id_hospital int not null auto_increment,
+usuario varchar(25) not null,
+contrasenia varchar(40),
 nombre varchar(50),
 direccion varchar(50),
 codigo_postal int,
@@ -43,7 +45,7 @@ CREATE TABLE doctor (
   descripcion varchar(100) NOT NULL,
   idf_consultorio int not null,
   PRIMARY KEY (id_doctor),
-  FOREIGN key (idfconsultorio) REFERENCES consultorio(id_consultorio)
+  FOREIGN key (idconsultorio) REFERENCES consultorio(id_consultorio)
 ) ;
 
 CREATE TABLE paciente (
@@ -55,11 +57,11 @@ CREATE TABLE paciente (
   municipio varchar(20) NOT NULL,
   estado varchar(20) NOT NULL,
   email varchar(30) NOT NULL,
-  nuerotel bigint not null,
+  numero_tel bigint not null,
   no_afiliacion bigint not null,
   idf_consultorio int not null,
   PRIMARY KEY (id_paciente),
-  FOREIGN key (idf_consultorio) REFERENCES consultorio(id_consultorio)
+  FOREIGN key (id_consultorio) REFERENCES consultorio(id_consultorio)
 );
 
 
@@ -74,8 +76,8 @@ idf_estatus int not null,
 fecha datetime,
 estatus enum('concretada','no concretada')NOT NULL,
 PRIMARY KEY (id_cita),
-FOREIGN KEY (idf_doctor) REFERENCES doctor (id_doctor),
-FOREIGN KEY (idf_paciente) REFERENCES paciente (id_paciente),
-FOREIGN KEY (idf_consultorio) REFERENCES consultorio (id_consultorio),
-FOREIGN KEY (idf_estatus) REFERENCES estatus (id_estatus)
+FOREIGN KEY (id_doctor) REFERENCES doctor (id_doctor),
+FOREIGN KEY (id_paciente) REFERENCES paciente (id_paciente),
+FOREIGN KEY (id_consultorio) REFERENCES consultorio (id_consultorio),
+FOREIGN KEY (id_estatus) REFERENCES estatus (id_estatus)
 );
